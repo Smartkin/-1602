@@ -1,13 +1,13 @@
 //Main class
 public class Palindrome {
-	//Program entry point
+	//Program's entry point
 	public static void main(String[] args)
 	{
 		//Loop for grabing all console parameters
 		for(int i=0;i<args.length;i++)
 		{
 			String s = args[i];
-			//Output depending on whether the strin is a palondrome
+			//Output depending on whether the string is a palondrome
 			if (isPalindrome(s))
 			{
 				System.out.println(s+" is a palindrome");
