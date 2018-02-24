@@ -6,10 +6,23 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Debug Point3D",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "externalTerminal",
+            "stopOnEntry": false,
+            "mainClass": "",
+            "args": "",
+            "classPaths": [
+                "${workspaceFolder}/Task 1"
+            ]
+        },
+        {
+            "type": "java",
             "name": "Debug Palindrome",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
+            "console": "externalTerminal",
             "stopOnEntry": false,
             "mainClass": "Palindrome",
             "args": "madam racecar apple kayak song noon",
@@ -22,7 +35,7 @@
             "name": "Debug Primes",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
+            "console": "externalTerminal",
             "stopOnEntry": false,
             "mainClass": "Primes",
             "args": "",
