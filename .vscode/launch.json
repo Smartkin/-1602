@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug Palindrome",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "Palindrome",
+            "args": "madam racecar apple kayak song noon",
+            "classPaths": [
+                "${workspaceFolder}/Task 0/Palindrome"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Debug Primes",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "Primes",
+            "args": "",
+            "classPaths": [
+                "${workspaceFolder}/Task 0/Primes"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Debug_attach",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 0
+        }
+    ]
+}

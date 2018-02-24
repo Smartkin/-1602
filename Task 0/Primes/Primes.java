@@ -20,7 +20,7 @@ public class Primes {
 	{
 		for(int i=2;i<n;i++)
 		{
-			if (n%i == 0 &&  n != i)
+			if (n%i == 0)
 				return false;
 		}
 		return true;
