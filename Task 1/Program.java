@@ -19,7 +19,7 @@ public class Program {
             {
                 if (i != j && points[i].equals(points[j]))
                 {
-                    System.out.print("Two or all three points are at the same position! No area was computed");
+                    System.out.print("Two or all three points are at the same position! No area was computed\n");
                     compute = false;
                     break;
                 }
@@ -29,7 +29,7 @@ public class Program {
         if (compute)
         {
             double area = computeArea(points[0], points[1], points[2]);
-            System.out.printf("The triangle's area: %f",area);
+            System.out.printf("The triangle's area: %f\n",area);
         }
         scanner.close();
     }
