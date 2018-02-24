@@ -12,7 +12,7 @@
             "console": "internalConsole",
             "stopOnEntry": false,
             "mainClass": "Palindrome",
-            "args": ""
+            "args": "help arra swim miim"
         },
         {
             "type": "java",
