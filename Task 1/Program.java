@@ -1,7 +1,7 @@
 import java.util.Scanner;
 //Main class
 public class Program {
-    //Program's entry point
+    //Program's entry poin
     public static void main(String[] args)
     {
         boolean compute = true; //Used to see whether we compute the area of the triangle
