@@ -42,7 +42,7 @@ public class Program {
         scanner.close();
     }
 
-    //Compuetes triangles area using Heron's formula
+    //Computes triangles area using Heron's formula
     public static double computeArea(Point3D p1,Point3D p2,Point3D p3)
     {
         double area;
