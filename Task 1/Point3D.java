@@ -72,6 +72,6 @@ public class Point3D {
      */
     public double distanceTo(Point3D p)
     {
-        return Math.sqrt(Math.pow(Math.abs(this.x-p.x),2)+Math.pow(Math.abs(this.y-p.y),2)+Math.pow(Math.abs(this.z-p.z),2));
+        return Math.sqrt(Math.pow(this.x-p.x,2)+Math.pow(this.y-p.y,2)+Math.pow(this.z-p.z,2));
     }
 }

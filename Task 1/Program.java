@@ -7,8 +7,9 @@ public class Program {
         boolean compute = true; //Used to see whether we compute the area of the triangle
         Point3D[] points = new Point3D[]{new Point3D(),new Point3D(),new Point3D()}; //Init an array of Point3Ds
         Scanner scanner = new Scanner(System.in); //Using scanner to read values of type double
+		
         //Loop to allow the user enter 3 points
-        for(int i=0;i<points.length;i++)
+        for (int i=0;i<points.length;i++)
         {
             System.out.format("Enter point %d: ", i+1);
             //Using Double.parseDouble() method in order to accept int values as well
@@ -16,8 +17,9 @@ public class Program {
             points[i].setY(Double.parseDouble(scanner.next()));
             points[i].setZ(Double.parseDouble(scanner.next()));
         }
+		
         //Loop for checking whether some points are at the same position
-        for(int i=0;i<points.length;i++)
+        for (int i=0;i<points.length;i++)
         {
             for (int j=0;j<points.length;j++)
             {
@@ -42,7 +44,7 @@ public class Program {
         scanner.close();
     }
 
-    //Computes triangles area using Heron's formula
+    //Computes triangle's area using Heron's formula
     public static double computeArea(Point3D p1,Point3D p2,Point3D p3)
     {
         double area;
