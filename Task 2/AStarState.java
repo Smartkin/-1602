@@ -67,6 +67,7 @@ public class AStarState
      **/
     public boolean addOpenWaypoint(Waypoint newWP)
     {
+        //Iterate through the list
         for (int i=0;i<open_waypoints.size();i++)
         {
             Waypoint point = open_waypoints.get(i);
@@ -108,10 +109,11 @@ public class AStarState
      **/
     public void closeWaypoint(Location loc)
     {
+        //Iterate through the list
         for (int i=0;i<open_waypoints.size();i++)
         {
             Waypoint point = open_waypoints.get(i);
-            //If needed point found start replacing
+            //If needed point found start removing
             if (loc.equals(point.getLocation()))
             {
                 closed_waypoints.add(point);
@@ -127,6 +129,7 @@ public class AStarState
      **/
     public boolean isLocationClosed(Location loc)
     {
+        //Iterate through the list
         for (int i=0;i<closed_waypoints.size();i++)
         {
             Waypoint point = closed_waypoints.get(i);
