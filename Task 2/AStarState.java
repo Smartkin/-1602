@@ -10,6 +10,9 @@ public class AStarState
     /** This is a reference to the map that the A* algorithm is navigating. **/
     private Map2D map;
 
+    /**
+     * Use <code>open_waypoints and closed_waypoints</code> as linked lists
+     */
     private Waypoint open_waypoints;
     private Waypoint closed_waypoints;
 
@@ -40,11 +43,14 @@ public class AStarState
      **/
     public Waypoint getMinOpenWaypoint()
     {
+        //Start iterating through the list
         Waypoint point = open_waypoints;
         if (point != null)
         {
+            //Set first point as minimum
             Waypoint min_point = point;
             point = point.getPrevious();
+            //Loop through the rest if they exist
             while (point != null)
             {
                 if (min_point.getTotalCost() > point.getTotalCost()) min_point = point;
@@ -67,31 +73,39 @@ public class AStarState
     public boolean addOpenWaypoint(Waypoint newWP)
     {
         Waypoint point = open_waypoints;
-        //Check if we are reading an existing waypoint
+        //Start looping through the list
         while(point != null)
         {
             Location loc = point.getLocation();
+            //Compare locations to see if received waypoint is in the list
             if (loc.equals(newWP.getLocation()))
             {
+                //Next check if its cost is less than the existing one
                 if (newWP.getPreviousCost() < point.getPreviousCost())
                 {
+                    //Replace the point, done by remaking the list the whole list (switch to normal list instead?)
                     Waypoint temp = point;
                     point = open_waypoints;
                     open_waypoints = null;
+                    //Start reiterating through the list
                     while(point != null)
                     {
+                        //Relink the points back unless the one being replaced is encountered
                         if (point.getPreviousCost() != temp.getPreviousCost())
                             open_waypoints = new Waypoint(point.getLocation(),open_waypoints);
                     }
+                    //Return true that the point was added
                     return true;
                 }
                 else
                 {
+                    //Return false if the point was not satisfying the requirments
                     return false;
                 }
             }
             point = point.getPrevious();
         }
+        //Add the point to the list if it was not found in the list
         open_waypoints = new Waypoint(newWP.getLocation(),open_waypoints);
         return true;
     }
@@ -102,6 +116,7 @@ public class AStarState
     {
         int num = 0;
         Waypoint point = open_waypoints;
+        //Start iterating through the list
         while(point != null)
         {
             num++;
@@ -118,15 +133,20 @@ public class AStarState
     public void closeWaypoint(Location loc)
     {
         Waypoint point = open_waypoints;
+        //Start iterating through the list
         while(point != null)
         {
+            //If needed point found start replacing
             if (loc.equals(point.getLocation()))
             {
+                //Add the point to closed_waypoints list
                 closed_waypoints = new Waypoint(point.getLocation(),closed_waypoints);
+                //Replace the point, done by remaking the list the whole list (switch to normal list instead?)
                 point = open_waypoints;
                 open_waypoints = null;
                 while (point != null)
                 {
+                    //Relink the points back unless the removed one is encountered
                     if (!loc.equals(point.getLocation()))
                     {
                         open_waypoints = new Waypoint(point.getLocation(),open_waypoints);
@@ -146,6 +166,7 @@ public class AStarState
     public boolean isLocationClosed(Location loc)
     {
         Waypoint point = closed_waypoints;
+        //Iterate through the linked list
         while(point != null)
         {
             if (loc.equals(point.getLocation()))
