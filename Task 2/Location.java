@@ -18,6 +18,11 @@ public class Location
         yCoord = y;
     }
 
+    public boolean equals(Location loc)
+    {
+        return xCoord == loc.xCoord && yCoord == loc.yCoord;
+    }
+
     /** Creates a new location with coordinates (0, 0). **/
     public Location()
     {

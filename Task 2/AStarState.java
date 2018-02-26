@@ -10,6 +10,9 @@ public class AStarState
     /** This is a reference to the map that the A* algorithm is navigating. **/
     private Map2D map;
 
+    private Waypoint open_waypoints;
+    private Waypoint closed_waypoints;
+
 
     /**
      * Initialize a new state object for the A* pathfinding algorithm to use.
@@ -20,6 +23,8 @@ public class AStarState
         throw new NullPointerException("map cannot be null");
 
         this.map = map;
+        open_waypoints = null;
+        closed_waypoints = null;
     }
 
     /** Returns the map that the A* pathfinder is navigating. **/
@@ -35,7 +40,18 @@ public class AStarState
      **/
     public Waypoint getMinOpenWaypoint()
     {
-        // TODO:  Implement.
+        Waypoint point = open_waypoints;
+        if (point != null)
+        {
+            Waypoint min_point = point;
+            point = point.getPrevious();
+            while (point != null)
+            {
+                if (min_point.getTotalCost() > point.getTotalCost()) min_point = point;
+                point = point.getPrevious();
+            }
+            return min_point;
+        }
         return null;
     }
 
@@ -50,16 +66,48 @@ public class AStarState
      **/
     public boolean addOpenWaypoint(Waypoint newWP)
     {
-        // TODO:  Implement.
-        return false;
+        Waypoint point = open_waypoints;
+        //Check if we are reading an existing waypoint
+        while(point != null)
+        {
+            Location loc = point.getLocation();
+            if (loc.equals(newWP.getLocation()))
+            {
+                if (newWP.getPreviousCost() < point.getPreviousCost())
+                {
+                    Waypoint temp = point;
+                    point = open_waypoints;
+                    open_waypoints = null;
+                    while(point != null)
+                    {
+                        if (point.getPreviousCost() != temp.getPreviousCost())
+                            open_waypoints = new Waypoint(point.getLocation(),open_waypoints);
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            point = point.getPrevious();
+        }
+        open_waypoints = new Waypoint(newWP.getLocation(),open_waypoints);
+        return true;
     }
 
 
     /** Returns the current number of open waypoints. **/
     public int numOpenWaypoints()
     {
-        // TODO:  Implement.
-        return 0;
+        int num = 0;
+        Waypoint point = open_waypoints;
+        while(point != null)
+        {
+            num++;
+            point = point.getPrevious();
+        }
+        return num;
     }
 
 
@@ -69,7 +117,26 @@ public class AStarState
      **/
     public void closeWaypoint(Location loc)
     {
-        // TODO:  Implement.
+        Waypoint point = open_waypoints;
+        while(point != null)
+        {
+            if (loc.equals(point.getLocation()))
+            {
+                closed_waypoints = new Waypoint(point.getLocation(),closed_waypoints);
+                point = open_waypoints;
+                open_waypoints = null;
+                while (point != null)
+                {
+                    if (!loc.equals(point.getLocation()))
+                    {
+                        open_waypoints = new Waypoint(point.getLocation(),open_waypoints);
+                    }
+                    point = point.getPrevious();
+                }
+                break;
+            }
+            point = point.getPrevious();
+        }
     }
 
     /**
@@ -78,7 +145,13 @@ public class AStarState
      **/
     public boolean isLocationClosed(Location loc)
     {
-        // TODO:  Implement.
+        Waypoint point = closed_waypoints;
+        while(point != null)
+        {
+            if (loc.equals(point.getLocation()))
+                return true;
+            point = point.getPrevious();
+        }
         return false;
     }
 }

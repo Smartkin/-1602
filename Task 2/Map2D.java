@@ -1,5 +1,5 @@
 public class Map2D {
-    private double width,height;
+    private int width,height;
     private int[][] cells;
     private Location start,finish;
 /** Creates a new 2D map, with the specified width and height. **/

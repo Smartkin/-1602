@@ -20,3 +20,9 @@ hs_err_pid*
 
 # MSWord dynamically created files
 ~$*.docx
+
+# Windows bat files
+*.bat
+
+# IntelliJ folders
+*.idea/

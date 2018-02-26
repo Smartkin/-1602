@@ -6,6 +6,19 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Debug Pathfinder",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "",
+            "args": "",
+            "classPaths": [
+                "${workspaceFolder}/Task 2"
+            ]
+        },
+        {
+            "type": "java",
             "name": "Debug Point3D",
             "request": "launch",
             "cwd": "${workspaceFolder}",
