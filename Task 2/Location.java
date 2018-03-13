@@ -7,7 +7,7 @@ public class Location
     /** X coordinate of this location. **/
     public int xCoord;
 
-    /** Y coordinate of this location. **/
+    /** Y coordinate of this location. * */
     public int yCoord;
 
 
@@ -18,9 +18,21 @@ public class Location
         yCoord = y;
     }
 
-    public boolean equals(Location loc)
+    @Override
+    public boolean equals(Object loc)
     {
-        return xCoord == loc.xCoord && yCoord == loc.yCoord;
+        Location loc_cast = ((Location) loc);
+        return xCoord == loc_cast.xCoord && yCoord == loc_cast.yCoord;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 1;
+        int PRIME = 31;
+        hash += PRIME*hash+xCoord;
+        hash += PRIME*hash+yCoord;
+        return hash;
     }
 
     /** Creates a new location with coordinates (0, 0). **/
