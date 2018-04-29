@@ -14,7 +14,6 @@ public class Crawler extends Thread {
     private final int RESOURCE = 2;
 
     private final String HREF = "href=\""; //HTML tag
-    private final String redirect = "Location: "; //Detecting redirect
 
     /**
      * Program's entry point
@@ -108,38 +107,15 @@ public class Crawler extends Thread {
                         break;
 
                     //Check whether the read line contains a link tag or redirect link
-                    if (line.contains(HREF) || line.contains(redirect)) {
-                        //Check whether redirect was encountered
-                        if (line.contains(redirect)){
-                            //Skip whitespaces
-                            int line_start = line.indexOf(redirect);
-                            //Remove anything before the link to get it
-                            line = line.substring(line_start + redirect.length());
-                            String new_url = line;
-                            //Create the pair and check if is contained in processed or to be processed lists
-                            URLDepthPair new_pair = new URLDepthPair(new_url, cur_depth+1);
-                            if (!found_urls.contains(new_pair) && !non_processed_urls.contains(new_pair)) {
-                                non_processed_urls.add(new_pair);
-                            }
-                        }
+                    if (line.contains(HREF)) {
                         //Keep reading this line in a loop in case there is more than one link tag
                         while(line.contains(HREF)) {
-                            //Skip whitespaces
+                            //Get rid of whitespaces and get the entirety of the link
                             int line_start = line.indexOf(HREF);
-                            //Set to the start of the link
                             line = line.substring(line_start + HREF.length());
-                            String new_url;
-                            //Use builder to speed up concat
-                            StringBuilder builder = new StringBuilder();
-                            while(true){
-                                builder.append(line.charAt(0));
-                                line = line.substring(1);
-                                if (line.charAt(0) == '\"')
-                                    break;
-                            }
-                            new_url = builder.toString();
+                            line = line.substring(0,line.indexOf("\""));
                             //Create the pair and check if is contained in processed or to be processed lists
-                            URLDepthPair new_pair = new URLDepthPair(new_url, cur_depth+1);
+                            URLDepthPair new_pair = new URLDepthPair(line, cur_depth+1);
                             if (!found_urls.contains(new_pair) && !non_processed_urls.contains(new_pair)) {
                                 non_processed_urls.add(new_pair);
                             }

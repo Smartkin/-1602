@@ -18,6 +18,10 @@ public class Location
         yCoord = y;
     }
 
+    /**
+     * Finds whether two locations are in the same position
+     * @param loc - Object that can be casted to Location class
+     */
     @Override
     public boolean equals(Object loc)
     {
@@ -25,11 +29,15 @@ public class Location
         return xCoord == loc_cast.xCoord && yCoord == loc_cast.yCoord;
     }
 
+    /**
+     * Used with hashmaps to get the hash of the location
+     * Calculated using the position of the location
+     */
     @Override
     public int hashCode()
     {
         int hash = 1;
-        int PRIME = 31;
+        final int PRIME = 31;
         hash += PRIME*hash+xCoord;
         hash += PRIME*hash+yCoord;
         return hash;

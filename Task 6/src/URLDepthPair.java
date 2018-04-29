@@ -1,3 +1,5 @@
+import java.net.MalformedURLException;
+
 public class URLDepthPair {
     private String URL;
     private int depth;
@@ -28,7 +30,7 @@ public class URLDepthPair {
     }
 
     /**
-     * first componet is the protocol
+     * first component is the protocol
      * second component is the hostname
      * third component is the path to the resource
      * @return components of the URL in string array
@@ -38,37 +40,17 @@ public class URLDepthPair {
         components[0] = "";
         components[1] = "";
         components[2] = "";
-        String temp_url = URL;
-        //Using string builder to speed up concat
-        StringBuilder builder = new StringBuilder();
-        while(true){
-            builder.append(temp_url.charAt(0));
-            temp_url = temp_url.substring(1);
-            //If the string is empty reset it and set that there is no protocol
-            if (temp_url.length() == 0)
-            {
-                components[0] = "";
-                temp_url = URL;
-                break;
-            }
-            if (temp_url.charAt(0) == ':')
-                break;
+        //Attempting to create the URL from the given string
+        try {
+            java.net.URL url = new java.net.URL(URL);
+            //Get the needed components
+            components[0] = url.getProtocol();
+            components[1] = url.getHost();
+            components[2] = url.getPath();
+        }catch(MalformedURLException e){
+            System.out.println("Error while parsing the URL, returned empty strings");
+            return components;
         }
-        components[0] = builder.toString();
-        //If the remaining string length is less than 3 then that means there is no link
-        if (temp_url.length() > 3) {
-            temp_url = temp_url.substring(3);
-            builder.delete(0, builder.toString().length());
-            while (true) {
-                builder.append(temp_url.charAt(0));
-                temp_url = temp_url.substring(1);
-                if (temp_url.length() == 0 || temp_url.charAt(0) == '/') {
-                    break;
-                }
-            }
-        }
-        components[1] = builder.toString();
-        components[2] = temp_url;
         return components;
     }
 }

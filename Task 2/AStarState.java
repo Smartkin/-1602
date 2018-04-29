@@ -15,6 +15,9 @@ public class AStarState
      * Use <code>open_waypoints and closed_waypoints</code> as hash maps
      */
     private HashMap<Location,Waypoint> open_waypoints;
+    /**
+     * Use <code>open_waypoints and closed_waypoints</code> as hash maps
+     */
     private HashMap<Location,Waypoint> closed_waypoints;
 
 
@@ -24,7 +27,7 @@ public class AStarState
     public AStarState(Map2D map)
     {
         if (map == null)
-        throw new NullPointerException("map cannot be null");
+            throw new NullPointerException("map cannot be null");
 
         this.map = map;
 
